@@ -11,5 +11,6 @@
     "**/.vscode": false,
     "**/.gitignore": false,
     "next.config.js": false
-  }
+  },
+  "explorerExclude.backup": {}
 }

@@ -28,9 +28,9 @@ function DailyEntry() {
         />
       </label>
       <CustomSwitch
+        switchLabel="Symptoms today?"
         id="symptoms"
         name="symptoms"
-        switchLabel="Symptoms Today?"
       />
       {/* {enabled ? <div>Enabled</div> : <div>Not enabled</div>} */}
     </form>

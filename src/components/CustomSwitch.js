@@ -10,7 +10,7 @@ function CustomSwitch({ switchLabel }) {
   return (
     <Switch.Group>
       <div className="flex items-center">
-        <Switch.Label className="mr-4">{switchLabel || 'Toggle'}</Switch.Label>
+        <Switch.Label className="mr-4">{switchLabel}</Switch.Label>
         <Switch
           checked={enabled}
           onChange={setEnabled}
@@ -18,7 +18,7 @@ function CustomSwitch({ switchLabel }) {
             enabled ? 'bg-green-700' : 'bg-gray-400'
           } relative inline-flex items-center h-8 rounded-full w-16`}
         >
-          <span className="sr-only">{switchLabel || 'Toggle'}</span>
+          <span className="sr-only">{switchLabel}</span>
           <span
             className={`${
               enabled ? 'translate-x-10' : 'translate-x-1'
