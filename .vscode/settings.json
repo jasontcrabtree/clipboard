@@ -1,16 +1,16 @@
 {
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "package-lock.json": true,
-    "**/node_modules": true,
-    "**/.next": true,
-    "**/.vscode": true,
-    "**/.gitignore": true,
-    "next.config.js": true
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/CVS": false,
+    "**/.DS_Store": false,
+    "package-lock.json": false,
+    "**/node_modules": false,
+    "**/.next": false,
+    "**/.vscode": false,
+    "**/.gitignore": false,
+    "next.config.js": false
   },
   "explorerExclude.backup": null
 }
