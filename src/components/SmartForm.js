@@ -1,13 +1,40 @@
 import { Switch } from '@headlessui/react';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { HiOutlineStar, HiStar } from 'react-icons/hi';
 import CustomSwitch from './CustomSwitch';
-import ProfileSwitch from './ProfileSwitch';
+
+// StarButton displays a single star
+// It is controlled via active and onClick props
+const StarButton = ({ active, onClick }) => (
+  <button type="button" onClick={onClick} className="w-6 h-6 border-none ">
+    {active ? (
+      <HiStar
+        color="secondary"
+        className="w-6 h-6 text-indigo-700 stroke-current"
+      />
+    ) : (
+      <HiOutlineStar className="w-6 h-6 text-grey-700 stroke-current" />
+    )}
+  </button>
+);
+
+// StarField uses 5 StarButtons to create a field
+// with value and onChange props
+const StarField = ({ value, onChange }) => (
+  <div className="flex flex-row gap-4 items-center">
+    <StarButton active={value >= 1} onClick={() => onChange(1)} />
+    <StarButton active={value >= 2} onClick={() => onChange(2)} />
+    <StarButton active={value >= 3} onClick={() => onChange(3)} />
+    <StarButton active={value >= 4} onClick={() => onChange(4)} />
+    <StarButton active={value >= 5} onClick={() => onChange(5)} />
+  </div>
+);
 
 /**
  * @returns {function} JSX Functional Component
  */
-function SmartForm(props) {
+function SmartForm() {
   const {
     register,
     handleSubmit,
@@ -20,13 +47,18 @@ function SmartForm(props) {
 
   const [enabled, setEnabled] = useState(false);
 
+  const { control: starControl, handleSubmit: star } = useForm({
+    defaultValues: {
+      rating: 0,
+    },
+  });
+
   const onSubmit = (data) => {
     console.log(data);
     // reset();
   };
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form
       className="flex flex-col gap-6 rounded"
       onSubmit={handleSubmit(onSubmit)}
@@ -38,6 +70,7 @@ function SmartForm(props) {
         className="p-2 rounded border-gray-300"
         type="text"
       />
+
       {/* include validation with required or other standard HTML validation rules */}
       <input
         defaultValue="Dublin"
@@ -45,17 +78,7 @@ function SmartForm(props) {
         className="p-2 rounded border-gray-300"
         type="text"
       />
-      {/* <Controller
-        control={control}
-        name="switch"
-        render={({ field }) => (
-          <>
-            <CustomSwitch {...field} switchLabel="Winter" />
-          </>
-        )}
-        // render={({ field }) => <CustomSwitch {...field} switchLabel="Winter" />}
-      /> */}
-      {/* <Controller control={control} name="switch" /> */}
+
       <Controller
         name="date"
         control={control}
@@ -68,14 +91,19 @@ function SmartForm(props) {
         )}
       />
 
-      {/* <ProfileSwitch name="profile" id="profile" /> */}
+      {/* <Controller
+        name="rating"
+        control={control}
+        render={({ field }) => <StarField {...field} />}
+      /> */}
 
       <Switch.Group className="flex items-center" as="div">
         <Switch.Label className="mr-4">Slept poorly</Switch.Label>
-        <span className="sr-only">Enable notifications</span>
+        <span className="sr-only">Sleep rating</span>
         <Controller
+          defaultValue={false}
           control={control}
-          name="receiveNotifications"
+          name="sleepBoolean"
           render={({ field: { onChange, value, name } }) => (
             <Switch
               checked={value}
@@ -95,65 +123,6 @@ function SmartForm(props) {
         />
       </Switch.Group>
 
-      {/* <Controller
-        name="switch"
-        control={control}
-        render={({ ref }) => (
-          <Switch
-            onChange={setEnabled}
-            checked={enabled}
-            inputRef={ref}
-            className={`${
-              enabled ? 'bg-blue-600' : 'bg-gray-200'
-            } relative inline-flex items-center h-6 rounded-full w-11`}
-          >
-            <span className="sr-only">Enable notifications</span>
-            <span
-              className={`${
-                enabled ? 'translate-x-6' : 'translate-x-1'
-              } inline-block w-4 h-4 transform bg-white rounded-full`}
-            />
-          </Switch>
-        )}
-      /> */}
-
-      {/* <Controller
-        name="switch"
-        control={control}
-        render={({ field: { value, ...field } }) => (
-          <Switch
-            // checked={enabled}
-            // onChange={setEnabled}
-            {...field}
-            {...props}
-            className={`${
-              enabled ? 'bg-blue-600' : 'bg-gray-200'
-            } relative inline-flex items-center h-6 rounded-full w-11`}
-          >
-            <span className="sr-only">Enable notifications</span>
-            <span
-              className={`${
-                enabled ? 'translate-x-6' : 'translate-x-1'
-              } inline-block w-4 h-4 transform bg-white rounded-full`}
-            />
-          </Switch>
-        )}
-      /> */}
-      {/* <Controller
-        control={control}
-        name="test"
-        render={({ onChange, onBlur, value, name, ref }) => (
-          <CustomSwitch
-            switchLabel="Winter"
-            onBlur={onBlur}
-            onChange={(e) => onChange(e.target.checked)}
-            checked={value}
-            inputRef={ref}
-          />
-        )}
-      /> */}
-      {/* <CustomSwitch {...register('switch')} switchLabel="Winter" /> */}
-      {/* errors will return when field validation fails  */}
       {errors.city && <span>This field is required</span>}
       <input
         className="p-2 border-gray-300 bg-indigo-800 text-gray-100 font-semibold rounded-md"
