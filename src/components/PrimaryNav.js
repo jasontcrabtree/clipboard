@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { HiChartBar, HiHome, HiPlusCircle } from 'react-icons/hi';
 
+/**
+ *
+ * @returns {function} JSX Stateless Component
+ */
 function PrimaryNav() {
   return (
     <nav className="bg-yellow-400 p-4 rounded-xl absolute bottom-8 max-w-3xl flex justify-center w-10/12 ml-4">

@@ -2,10 +2,15 @@ import { useState } from 'react';
 import { Switch } from '@headlessui/react';
 import PropTypes from 'prop-types';
 
+/**
+ *
+ * @param {{switchLabel: string}} props Switch Label
+ * @returns {function} JSX Stateless Component
+ */
 function CustomSwitch({ switchLabel }) {
   const [enabled, setEnabled] = useState(false);
 
-  console.log(enabled);
+  // console.log(enabled);
 
   return (
     <Switch.Group>

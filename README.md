@@ -1,5 +1,22 @@
-# Next JS Base Template
+# A demo project
 
-`npm run dev` to run dev mode
+## Tech Used:
 
-After cloning repo, run `git remote -v` to check remote origin then `git remote remove origin` to disconnect and reinit with new repo
+- NextJS
+- Headless UI
+- Tailwind
+- Hasura
+- EsLint
+- PropTypes
+- JSDoc
+- Netlify
+
+## Possible Integrations:
+
+- SWR / URQL / GraphQL-Request
+- Jotai
+- React-hook-form
+
+### References:
+
+- [EsLint-Require-JSDoc Rules reference](https://eslint.org/docs/rules/require-jsdoc)
