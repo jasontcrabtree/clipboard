@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import request, { gql } from 'graphql-request';
 
 const API = 'https://zls-health-app.hasura.app/v1/graphql';
@@ -13,10 +11,6 @@ export default async (req, res) => {
   };
 
   // const fetcher = (query) => request(API, query, variables, headers);
-
-  // console.log(fetcher);
-
-  console.log(headers);
 
   const query = gql`
     query getAll {
