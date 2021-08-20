@@ -7,7 +7,7 @@ import { HiChartBar, HiHome, HiPlusCircle } from 'react-icons/hi';
  */
 function PrimaryNav() {
   return (
-    <nav className="bg-yellow-400 p-4 rounded-xl absolute bottom-8 max-w-3xl flex justify-center w-10/12 ml-4">
+    <nav className="mx-auto bg-yellow-400 p-0 rounded-xl max-w-md w-96 flex justify-center inset-x-0 bottom-24 fixed">
       <ul className="flex flex-row justify-center gap-6 w-full">
         <li>
           <Link href="/">
