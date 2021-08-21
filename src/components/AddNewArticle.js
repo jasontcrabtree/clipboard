@@ -1,12 +1,49 @@
-import { request } from 'graphql-request';
-import useSWR from 'swr';
+import { request, gql, GraphQLClient } from 'graphql-request';
+
 import { useForm } from 'react-hook-form';
+import { API } from '../lib/utils';
 
 /**
  *
  * @returns {function} JSX Component
  */
-function AddNewArticle() {
+export async function getServerSideProps() {
+  const graphQLClient = new GraphQLClient(API, {
+    headers: {
+      'Content-Type': 'application/json',
+      'x-hasura-admin-secret': `${process.env.HASURA_SECRET_KEY}`,
+    },
+  });
+
+  const mutation = gql`
+    mutation insert_single_articles($object: articles_insert_input!) {
+      insert_articles_one(object: $object) {
+        id
+        title
+        author
+      }
+    }
+  `;
+
+  const variables = {
+    object: {
+      title: '20 Aug New day',
+      content: 'Post 4, from code!!',
+      author: 'Jason',
+    },
+  };
+
+  const data = await graphQLClient.request(mutation, variables);
+
+  // Pass data to the page via props
+  return { props: { data } };
+}
+
+/**
+ *
+ * @returns {function} JSX Component
+ */
+function AddNewArticle(props) {
   const {
     register,
     handleSubmit,
@@ -14,6 +51,8 @@ function AddNewArticle() {
     reset,
     formState: { errors },
   } = useForm();
+
+  // console.log(props);
 
   const mutation = `mutation insert_single_articles($object: articles_insert_input!) {
     insert_articles_one(object: $object) {
@@ -26,11 +65,22 @@ function AddNewArticle() {
   // request('/api/graphql', query);
 
   const onSubmit = (values) => {
-    console.log({ values });
-    const variables = { objects: { values } };
+    console.log(values);
+
+    const variables = { object: values };
+
+    const variablesHC = {
+      object: {
+        title: '20 Aug New day',
+        content: 'Post 6, from code, from component!!',
+        author: 'Jason',
+      },
+    };
 
     console.log(variables);
-    request('/api/graphql', mutation, { variables });
+    console.log(variablesHC);
+
+    request('/api/graphql', mutation, variables);
   };
 
   // console.log(watch('title'), watch('author'), watch('content'));

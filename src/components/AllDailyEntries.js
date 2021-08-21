@@ -1,5 +1,6 @@
 import { request } from 'graphql-request';
 import useSWR from 'swr';
+import { fetcher } from '../lib/utils';
 
 /**
  *
@@ -19,8 +20,6 @@ function AllDailyEntries() {
   // const fetchWithToken = 'hello';
 
   // const { data } = useSWR(['/api/graphql', token], fetchWithToken);
-
-  const fetcher = (query) => request('/api/graphql', query);
 
   const { data, error } = useSWR(
     `query getAll {

@@ -31,7 +31,9 @@ export default async (req, res) => {
 
   const apiQuery = req.body.query;
 
-  console.log(apiQuery);
+  // console.log(apiQuery);
+
+  console.log(req.body);
 
   // const queryClient = gql`
   //   query getAll {
@@ -44,31 +46,30 @@ export default async (req, res) => {
   //   }
   // `;
 
-  const mutation = gql`
-    mutation insert_single_articles($object: articles_insert_input!) {
-      insert_articles_one(object: $object) {
-        id
-        title
-        author
-      }
-    }
-  `;
+  // const mutation = gql`
+  //   mutation insert_single_articles($object: articles_insert_input!) {
+  //     insert_articles_one(object: $object) {
+  //       id
+  //       title
+  //       author
+  //     }
+  //   }
+  // `;
 
-  const variables = {
-    object: {
-      title: '20 Aug New day',
-      content: 'Post 4, from code!!',
-      author: 'Jason',
-    },
-  };
+  // const variables = {
+  //   object: {
+  //     title: '20 Aug New day',
+  //     content: 'Post 4, from code!!',
+  //     author: 'Jason',
+  //   },
+  // };
 
-  const hardCodedMutation = {
-    mutation,
-    variables,
-  };
+  const { query } = req.body;
+  const { variables } = req.body;
 
-  const data = await graphQLClient.request(mutation, variables);
-  // const data = await graphQLClient.request(queryClient);
+  const data = await graphQLClient.request(query, variables);
+  // const data = await graphQLClient.request(mutation, variables);
+  // const data = await graphQLClient.request(apiClient);
 
   // console.log('Print:', JSON.stringify(data, undefined, 2));
 

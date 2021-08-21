@@ -16,7 +16,7 @@ export default function Home() {
         Clipboard
       </h1>
       <AddNewArticle />
-      {/* <AllDailyEntries /> */}
+      <AllDailyEntries />
       {/* <DailyEntry /> */}
       {/* <SmartForm /> */}
     </section>
