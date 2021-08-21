@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { HiChartBar, HiHome, HiPlusCircle } from 'react-icons/hi';
 
 /**
- *
+ * JSX component to display page navigation optons
  * @returns {function} JSX Stateless Component
  */
 function PrimaryNav() {
   return (
-    <nav className="mx-auto bg-yellow-400 p-0 rounded-xl max-w-md w-96 flex justify-center inset-x-0 bottom-24 fixed">
+    <nav className="mx-auto bg-yellow-400 p-0 rounded-xl max-w-md w-96 flex justify-center inset-x-0 bottom-20 fixed shadow-lg">
       <ul className="flex flex-row justify-center gap-6 w-full">
         <li>
           <Link href="/">

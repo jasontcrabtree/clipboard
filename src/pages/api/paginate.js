@@ -18,6 +18,19 @@ export default async (req, res) => {
   const { query } = req.body;
   const { variables } = req.body;
 
+  // const variables = { limit: 1 };
+
+  //   const query = `query ALL_ARTICLES_PAGINATED($limit: Int = 4) {
+  //   articles(limit: $limit, order_by: {created_at: desc}) {
+  //     id
+  //     title
+  //     content
+  //   }
+  // }
+  // `;
+
+  // console.log('query:', query, 'variables: ', variables);
+
   const data = await graphQLClient.request(query, variables);
 
   res.status(200).json({

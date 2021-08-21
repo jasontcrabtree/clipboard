@@ -4,7 +4,7 @@ import '../styles/globals.css';
 import PrimaryNav from '../components/PrimaryNav';
 
 /**
- *
+ * Global wrapper component that holds meta value, shared layout styles, shared components (e.g. primary nav). Each page component is wrapped with this component, via the Component + pageProps NextJS functionality.
  * @param {compoonent} Component NextJS component
  * @param {pageProps} pageProps NextJS pageProps
  * @returns {function} JSX Function
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <PrimaryNav />
-      <main className="bg-yellow-200 min-h-screen h-auto w-screen/10 p-4 pb-32 flex justify-center">
+      <main className="bg-yellow-200 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center">
         <div className="max-w-3xl w-96 mx-auto">
           <Component {...pageProps} />
         </div>

@@ -1,7 +1,7 @@
-import AllDailyEntries from '../components/AllDailyEntries';
+import AddNewArticle from '../components/AddNewArticle';
 
 /**
- * Homepage component, shows HTML on the index page. Each component has it's own self contained logic.
+ * New daily entry JSX page level component. Each component has it's own self contained logic.
  * @returns {function} JSX Stateless Component
  */
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
       <h1 className="font-bold text-4xl text-center pt-8 pb-2 mb-8">
         Clipboard
       </h1>
-      <AllDailyEntries limit={3} />
+      <AddNewArticle />
     </section>
   );
 }

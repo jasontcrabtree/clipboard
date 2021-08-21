@@ -1,8 +1,6 @@
 import { Switch } from '@headlessui/react';
-import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { HiOutlineStar, HiStar } from 'react-icons/hi';
-import CustomSwitch from './CustomSwitch';
 
 // StarButton displays a single star
 // It is controlled via active and onClick props
@@ -38,23 +36,13 @@ function SmartForm() {
   const {
     register,
     handleSubmit,
-    reset,
     control,
-    getValues,
-    formState,
     formState: { errors },
   } = useForm({});
 
-  const [enabled, setEnabled] = useState(false);
-
-  const { control: starControl, handleSubmit: star } = useForm({
-    defaultValues: {
-      rating: 0,
-    },
-  });
-
   const onSubmit = (data) => {
-    console.log(data);
+    const submitted = data;
+    return submitted;
     // reset();
   };
 
@@ -91,11 +79,11 @@ function SmartForm() {
         )}
       />
 
-      {/* <Controller
+      <Controller
         name="rating"
         control={control}
         render={({ field }) => <StarField {...field} />}
-      /> */}
+      />
 
       <Switch.Group className="flex items-center" as="div">
         <Switch.Label className="mr-4">Slept poorly</Switch.Label>

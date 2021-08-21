@@ -10,8 +10,6 @@ import PropTypes from 'prop-types';
 function CustomSwitch({ switchLabel }) {
   const [enabled, setEnabled] = useState(false);
 
-  // console.log(enabled);
-
   return (
     <Switch.Group>
       <div className="flex items-center">
