@@ -19,6 +19,15 @@ const StarButton = ({ active, onClick }) => (
 
 // StarField uses 5 StarButtons to create a field
 // with value and onChange props
+// /**
+//  * @typedef Starfield
+//  * @prop {number} value Star Rating Nubmer
+//  * @prop {function} onChange Action on rating change
+//  *
+//  * @param {number} value Number
+//  * @param {function} onChange Function
+//  * @returns {function} JSX Component
+//  */
 const StarField = ({ value, onChange }) => (
   <div className="flex flex-row gap-4 items-center">
     <StarButton active={value >= 1} onClick={() => onChange(1)} />
@@ -28,6 +37,21 @@ const StarField = ({ value, onChange }) => (
     <StarButton active={value >= 5} onClick={() => onChange(5)} />
   </div>
 );
+
+/**
+ * @typedef Address
+ * @prop {string} street The Street
+ * @prop {string} city The city
+ * @prop {number} zip The zip code
+ *
+ * @typedef {Customer}
+ * @prop {string} name Customer name
+ * @prop {string} email Customer email
+ * @prop {Address} address The customer's address
+ */
+
+/** @type {Customer} */
+// const theCustomer = { ...Address.street };
 
 /**
  * @returns {function} JSX Functional Component

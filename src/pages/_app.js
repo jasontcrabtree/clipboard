@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import '../styles/reset.css';
 import '../styles/globals.css';
+import { Provider } from 'next-auth/client';
 import PrimaryNav from '../components/PrimaryNav';
 
 /**
@@ -11,7 +12,7 @@ import PrimaryNav from '../components/PrimaryNav';
  */
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <Provider session={pageProps.session} value="">
       <Head>
         <title>Clipboard</title>
         <link rel="shortcut icon" href="/Favicon.svg" />
@@ -23,7 +24,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </div>
       </main>
-    </>
+    </Provider>
   );
 }
 
