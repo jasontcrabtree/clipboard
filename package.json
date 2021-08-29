@@ -19,6 +19,7 @@
     }
   },
   "dependencies": {
+    "@babel/core": "^7.15.0",
     "@headlessui/react": "^1.4.0",
     "@prisma/client": "^2.30.0",
     "graphql": "^15.5.1",
