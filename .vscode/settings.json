@@ -5,12 +5,15 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "package-lock.json": true,
-    "**/node_modules": true,
+    "node_modules/": true,
+    ".vscode": true,
+    ".gitignore": true,
     "**/.next": true,
-    "**/.vscode": true,
-    "**/.gitignore": true,
-    "next.config.js": true
+    "**/package-lock.json": true,
+    "**/next-env.d.ts": true,
+    "tsconfig.json": true,
+    "**/public": true,
+    "**/next.config.js": true
   },
   "explorerExclude.backup": null
 }

@@ -1,3 +1,5 @@
+// @ts-check
+
 import Head from 'next/head';
 import '../styles/reset.css';
 import '../styles/globals.css';
@@ -6,13 +8,15 @@ import PrimaryNav from '../components/PrimaryNav';
 
 /**
  * Global wrapper component that holds meta value, shared layout styles, shared components (e.g. primary nav). Each page component is wrapped with this component, via the Component + pageProps NextJS functionality.
- * @param {compoonent} Component NextJS component
+ * @param {Component} Component NextJS component
  * @param {pageProps} pageProps NextJS pageProps
  * @returns {function} JSX Function
  */
 function MyApp({ Component, pageProps }) {
+  console.log('app');
+
   return (
-    <Provider session={pageProps.session} value="">
+    <Provider session={pageProps.session}>
       <Head>
         <title>Clipboard</title>
         <link rel="shortcut icon" href="/Favicon.svg" />

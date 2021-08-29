@@ -35,7 +35,7 @@ function AllDailyEntries({ limit = 1 }) {
         content
       }
     }`,
-    fetcher
+    fetcher,
   );
 
   if (error) {

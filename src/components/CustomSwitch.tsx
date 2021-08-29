@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 /**
  *
  * @param {{switchLabel: string}} props Switch Label
- * @returns {function} JSX Stateless Component
+ * @returns {JSX} JSX Stateless Component
  */
-function CustomSwitch({ switchLabel }) {
+function CustomSwitch({ switchLabel, id, name }) {
   const [enabled, setEnabled] = useState(false);
 
   return (
@@ -35,6 +35,7 @@ function CustomSwitch({ switchLabel }) {
 
 CustomSwitch.propTypes = {
   switchLabel: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default CustomSwitch;

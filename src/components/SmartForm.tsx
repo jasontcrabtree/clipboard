@@ -98,6 +98,7 @@ function SmartForm() {
           <input
             type="date"
             onChange={(e) => field.onChange(e)}
+            // @ts-ignore
             selected={field.value}
           />
         )}
