@@ -13,7 +13,11 @@
     "**/next-env.d.ts": true,
     "tsconfig.json": true,
     "**/public": true,
-    "**/next.config.js": true
+    "**/next.config.js": true,
+    "**/netlify.toml": true,
+    "**/tailwind.config.js": true,
+    "**/postcss.config.js": true,
+    "**/.prettierrc": true
   },
   "explorerExclude.backup": null
 }

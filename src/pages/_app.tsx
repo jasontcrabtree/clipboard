@@ -13,8 +13,6 @@ import PrimaryNav from '../components/PrimaryNav';
  * @returns {function} JSX Function
  */
 function MyApp({ Component, pageProps }) {
-  console.log('app');
-
   return (
     <Provider session={pageProps.session}>
       <Head>
