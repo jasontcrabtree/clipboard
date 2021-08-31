@@ -1,12 +1,16 @@
 import useSWR from 'swr';
-import { request } from 'graphql-request';
 import { fetcher } from '../lib/utils';
+
+type DailyEntryProps = {
+  limit: number;
+};
 
 /**
  *
  * @returns {function} JSX Component
  */
-function AllDailyEntries({ limit = 1 }) {
+function AllDailyEntries({ limit = 1 }: DailyEntryProps): JSX.Element {
+  /* TODO Refactor or remove this */
   // Don’t do this! Deps will be changed on every render.
   // useSWR(['/api/user', { id }], query);
   // Instead, you should only pass “stable” values.

@@ -53,7 +53,8 @@ export default NextAuth({
     // encryption: true,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
-    encode: async ({ secret, token, maxAge }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    encode: async ({ secret, token, maxAge }): Promise<any> => {
       const jwtClaims = {
         sub: token.sub.toString(),
         name: token.name,
@@ -70,6 +71,7 @@ export default NextAuth({
       const encodedToken = jwt.sign(jwtClaims, secret, { algorithm: 'HS256' });
       return encodedToken;
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     decode: async ({ secret, token, maxAge }) => {
       const decodedToken = jwt.verify(token, secret, { algorithms: ['HS256'] });
       return decodedToken;

@@ -1,22 +1,23 @@
 {
   "files.exclude": {
-    "**/.git": false,
-    "**/.svn": false,
-    "**/.hg": false,
-    "**/CVS": false,
-    "**/.DS_Store": false,
-    "node_modules/": false,
-    ".vscode": false,
-    ".gitignore": false,
-    "**/.next": false,
-    "**/package-lock.json": false,
-    "**/next-env.d.ts": false,
-    "tsconfig.json": false,
-    "**/public": false,
-    "**/next.config.js": false,
-    "**/netlify.toml": false,
-    "**/tailwind.config.js": false,
-    "**/postcss.config.js": false,
-    "**/.prettierrc": false
-  }
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "node_modules/": true,
+    ".vscode": true,
+    ".gitignore": true,
+    "**/.next": true,
+    "**/package-lock.json": true,
+    "**/next-env.d.ts": true,
+    "tsconfig.json": true,
+    "**/public": true,
+    "**/next.config.js": true,
+    "**/netlify.toml": true,
+    "**/tailwind.config.js": true,
+    "**/postcss.config.js": true,
+    "**/.prettierrc": true
+  },
+  "explorerExclude.backup": null
 }

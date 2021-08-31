@@ -103,7 +103,6 @@ function SmartForm() {
           />
         )}
       />
-
       <Controller
         name="rating"
         control={control}

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
  *
  * @returns {function} JSX Component
  */
-function AddNewArticle() {
+function AddNewArticle(): JSX.Element {
   const {
     register,
     handleSubmit,

@@ -1,9 +1,10 @@
 // @ts-check
 
 import Head from 'next/head';
+import { AppProps } from 'next/app';
+import { Provider } from 'next-auth/client';
 import '../styles/reset.css';
 import '../styles/globals.css';
-import { Provider } from 'next-auth/client';
 import PrimaryNav from '../components/PrimaryNav';
 
 /**
@@ -12,7 +13,7 @@ import PrimaryNav from '../components/PrimaryNav';
  * @param {pageProps} pageProps NextJS pageProps
  * @returns {function} JSX Function
  */
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider session={pageProps.session}>
       <Head>
