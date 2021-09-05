@@ -1,4 +1,4 @@
-import CustomSwitch from './CustomSwitch';
+import CustomSwitch from './_CustomSwitch';
 
 /**
  *
