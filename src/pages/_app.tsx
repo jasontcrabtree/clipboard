@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <PrimaryNav />
-      <main className="bg-yellow-200 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center">
+      <main className="bg-gray-900 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center leading-loose">
         <div className="max-w-3xl w-96 mx-auto">
           <Component {...pageProps} />
         </div>

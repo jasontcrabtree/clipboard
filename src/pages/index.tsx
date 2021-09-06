@@ -8,7 +8,7 @@ import UserDailyEntries from '../components/UserDailyEntries';
 export default function Home(): JSX.Element {
   return (
     <section className="flex flex-col w-full gap-8">
-      <h1 className="font-bold text-4xl text-center pt-8 pb-2 mb-8">
+      <h1 className="font-bold text-4xl text-center pt-8 pb-2 mb-8 text-blue-400">
         Clipboard
       </h1>
       {/* <AllDailyEntries limit={3} /> */}
