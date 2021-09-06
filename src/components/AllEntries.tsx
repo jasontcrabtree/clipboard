@@ -1,20 +1,17 @@
 import useSWR from 'swr';
 import { fetcher } from '../lib/utils';
 
-type DailyEntryProps = {
-  userId: string;
-};
+type DailyEntryProps = {};
 
 /**
  *
  * @returns {function} JSX Component
  */
-function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
+function AllEntries(): JSX.Element {
   // This is probably incorrect. Because we are using API routes to securely access data (via the fetcher function), and I don't want to change the graphql endpoint for each function, we need to change the query client side, not pass in variables, for SWR, I guess? This is the only way I can get it to work for SWR at least.
-
   const { data, error } = useSWR(
-    `query DailyEntriesByUser {
-      daily_entries(where: {user_id: {_eq: "${userId}"}}) {
+    `query AllDailyEntries {
+      daily_entries {
         id
         created_at
         day_summary
@@ -45,13 +42,6 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
 
   const entry = data.daily_entries;
 
-  // console.log(entry);
-
-  console.log(
-    entry[11].daily_entries_has_join_to_symptoms[0]
-      .daily_entries_symptoms_join_table_symptoms[0],
-  );
-
   return (
     <ul className="flex flex-col gap-4 mb-4">
       {entry?.map((item) => (
@@ -60,18 +50,10 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
           key={item?.id}
         >
           <h3 className="font-semibold">{item.day_summary}</h3>
-          <p>
-            {item.daily_entries_has_join_to_symptoms[0] ? (
-              item?.daily_entries_has_join_to_symptoms[0]
-                .daily_entries_symptoms_join_table_symptoms[0].has_sore_neck
-            ) : (
-              <div>Null</div>
-            )}
-          </p>
         </li>
       ))}
     </ul>
   );
 }
 
-export default UserDailyEntries;
+export default AllEntries;
