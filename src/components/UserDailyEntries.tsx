@@ -34,7 +34,7 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
     fetcher,
   );
 
-  console.log(data);
+  // console.log(data);
 
   if (error) {
     console.warn(error);
@@ -47,10 +47,18 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
 
   // console.log(entry);
 
-  console.log(
-    entry[11].daily_entries_has_join_to_symptoms[0]
-      .daily_entries_symptoms_join_table_symptoms[0],
-  );
+  // console.log(
+  //   typeof entry[11].daily_entries_has_join_to_symptoms[0]
+  //     .daily_entries_symptoms_join_table_symptoms[0],
+  // );
+
+  entry.map((entryData) => {
+    const entrySymptoms = entryData?.daily_entries_has_join_to_symptoms;
+
+    entrySymptoms.map((symptoms) => {
+      // console.log(symptoms?.daily_entries_symptoms_join_table_symptoms[0]);
+    });
+  });
 
   return (
     <ul className="flex flex-col gap-4 mb-4">
@@ -60,14 +68,16 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
           key={item?.id}
         >
           <h3 className="font-semibold">{item.day_summary}</h3>
-          <p>
-            {item.daily_entries_has_join_to_symptoms[0] ? (
-              item?.daily_entries_has_join_to_symptoms[0]
-                .daily_entries_symptoms_join_table_symptoms[0].has_sore_neck
-            ) : (
-              <div>Null</div>
-            )}
-          </p>
+          {item?.daily_entries_has_join_to_symptoms.map((entryData) => {
+            const entrySymptoms =
+              entryData.daily_entries_symptoms_join_table_symptoms[0];
+            console.log(entrySymptoms);
+            return (
+              <div key={entrySymptoms.id}>
+                {entrySymptoms.has_tired ? `Tired` : null}
+              </div>
+            );
+          })}
         </li>
       ))}
     </ul>
