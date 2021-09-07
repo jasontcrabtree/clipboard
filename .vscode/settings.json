@@ -18,7 +18,9 @@
     "**/netlify.toml": true,
     "**/tailwind.config.js": true,
     "**/postcss.config.js": true,
-    "**/.prettierrc": true
+    "**/.prettierrc": true,
+    "**/.eslintrc": true,
+    "**/.env": true
   },
   "explorerExclude.backup": null
 }

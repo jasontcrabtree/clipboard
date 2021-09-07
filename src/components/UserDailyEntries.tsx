@@ -1,60 +1,10 @@
 import useSWR from 'swr';
-import { fetcher } from '../lib/utils';
+import { fetcher, formatDate } from '../lib/utils';
+import SymptomsResult from './SymptomsResult';
 
 type DailyEntryProps = {
   userId: string;
 };
-
-const formatDate = function (timestamp) {
-  // Create a date object from the timestamp
-  const date = new Date(timestamp);
-
-  // Create a list of names for the months
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'April',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-
-  // return a formatted date
-  return (
-    months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
-  );
-};
-
-type SymptomsDisplayProps = {
-  label: string;
-};
-
-// let present;
-// const clsxTest = present ? '' : '';
-
-/**
- * @param {string} label The label of the rendered symptom
- * @returns {function} JSX Component
- */
-function SymptomsResult({ label }: SymptomsDisplayProps): JSX.Element {
-  console.log(label);
-
-  return (
-    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-      {label}
-    </span>
-  );
-}
-
-<SymptomsResult label="Tired" />;
-
-// function SymptomsAbsent() {}
 
 /**
  *
@@ -67,17 +17,17 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
     `query DailyEntriesByUser {
       daily_entries(where: {user_id: {_eq: "${userId}"}}, order_by: {created_at: desc}) {
         id
-        created_at
-        day_summary
-        daily_entries_has_join_to_symptoms {
-          daily_entries_symptoms_join_table_symptoms {
+        created: created_at
+        daySummary: day_summary
+        entryJoinSymptoms: daily_entries_has_join_to_symptoms {
+          entrySymptoms: daily_entries_symptoms_join_table_symptoms {
             id
-            created_at
-            has_digestive_issues
-            has_headachie
-            has_sore_neck
-            has_sore_stomach
-            has_tired
+            created: created_at
+            digestion: has_digestive_issues
+            headache: has_headachie
+            soreNeck: has_sore_neck
+            soreStomach: has_sore_stomach
+            tired: has_tired
           }
         }
       }
@@ -94,66 +44,80 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
 
   const entry = data.daily_entries;
 
-  console.log(formatDate('2018-07-04 05:00:00'));
-
   return (
     <ul className="flex flex-col gap-4 mb-4 text-gray-400">
       {entry?.map((entryData) => {
-        console.log(entryData);
-        console.log(formatDate(entryData.created_at));
+        // console.log(entryData);
         return (
           <li
             className="p-2 border border-gray-800 bg-gray-900 rounded shadow-xl"
             key={entryData?.id}
           >
-            <span className="font-semibold opacity-40 text-blue-500">
-              {formatDate(entryData.created_at)}
+            <span className="font-semibold opacity-40 text-blue-400">
+              {formatDate(entryData.created)}
             </span>
-            <h3 className="font-semibold">{entryData.day_summary}</h3>
-            {entryData?.daily_entries_has_join_to_symptoms.map((entryData) => {
-              const entrySymptoms =
-                entryData.daily_entries_symptoms_join_table_symptoms[0];
+            <h3 className="font-semibold">{entryData.daySummary}</h3>
+            {entryData?.entryJoinSymptoms.map((entryData) => {
+              const entrySymptoms = entryData.entrySymptoms[0];
+
               // console.log(entrySymptoms);
 
-              // Given entrySymptioms
-              // Return a list of symptoms in a nice way
-              // List to pass in (entrySymptoms)
-              // Fleible span/div to display data
               return (
                 <div key={entrySymptoms.id} className="flex gap-2 flex-wrap">
-                  {entrySymptoms.has_tired ? (
-                    <SymptomsResult label="Tired" />
+                  {entrySymptoms.tired ? (
+                    <SymptomsResult
+                      label="Tired"
+                      present={entrySymptoms.tired}
+                    />
                   ) : (
-                    <span className="text-purple-500 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Not tired
-                    </span>
+                    <SymptomsResult
+                      label="Not Tired"
+                      present={entrySymptoms.tired}
+                    />
                   )}
-                  {entrySymptoms.has_headachie ? (
-                    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Headache
-                    </span>
+                  {entrySymptoms.headache ? (
+                    <SymptomsResult
+                      label="Headache"
+                      present={entrySymptoms.headache}
+                    />
                   ) : (
-                    <span className="text-purple-500 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      No Headache
-                    </span>
+                    <SymptomsResult
+                      label="No Headache"
+                      present={entrySymptoms.headache}
+                    />
                   )}
-                  {entrySymptoms.has_digestive_issues ? (
-                    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Digestive Issues
-                    </span>
+                  {entrySymptoms.soreNeck ? (
+                    <SymptomsResult
+                      label="Sore Neck"
+                      present={entrySymptoms.soreNeck}
+                    />
                   ) : (
-                    <span className="text-purple-500 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Normal Digestion
-                    </span>
+                    <SymptomsResult
+                      label="No Sore Neck"
+                      present={entrySymptoms.soreNeck}
+                    />
                   )}
-                  {entrySymptoms.has_sore_stomach ? (
-                    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Sore Stomach
-                    </span>
+                  {entrySymptoms.digestion ? (
+                    <SymptomsResult
+                      label="Digestive Issues"
+                      present={entrySymptoms.digestion}
+                    />
                   ) : (
-                    <span className="text-purple-500 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Normal Stomach
-                    </span>
+                    <SymptomsResult
+                      label="Normal Digestion"
+                      present={entrySymptoms.digestion}
+                    />
+                  )}
+                  {entrySymptoms.soreStomach ? (
+                    <SymptomsResult
+                      label="Sore Stomach"
+                      present={entrySymptoms.soreStomach}
+                    />
+                  ) : (
+                    <SymptomsResult
+                      label="Normal Stomach"
+                      present={entrySymptoms.soreStomach}
+                    />
                   )}
                 </div>
               );

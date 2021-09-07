@@ -16,7 +16,7 @@ function PrimaryNav(): JSX.Element {
     return <div className="bg-gray-900 text-gray-500">Loading …</div>;
 
   return (
-    <nav className="mx-auto bg-blue-500 p-0 rounded-xl max-w-md w-96 flex justify-center inset-x-0 bottom-20 fixed shadow-lg">
+    <nav className="mx-auto bg-blue-500 p-0 rounded-xl max-w-md w-96 flex justify-center inset-x-0 bottom-20 fixed shadow-lg z-10">
       <ul className="flex flex-row justify-center gap-6 w-full">
         <li>
           <Link href="/">
