@@ -11,23 +11,50 @@ const formatDate = function (timestamp) {
 
   // Create a list of names for the months
   const months = [
-    'January',
-    'February',
-    'March',
+    'Jan',
+    'Feb',
+    'Mar',
     'April',
     'May',
     'June',
     'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   // return a formatted date
-  return months[date.getMonth()];
+  return (
+    months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+  );
 };
+
+type SymptomsDisplayProps = {
+  label: string;
+};
+
+// let present;
+// const clsxTest = present ? '' : '';
+
+/**
+ * @param {string} label The label of the rendered symptom
+ * @returns {function} JSX Component
+ */
+function SymptomsResult({ label }: SymptomsDisplayProps): JSX.Element {
+  console.log(label);
+
+  return (
+    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
+      {label}
+    </span>
+  );
+}
+
+<SymptomsResult label="Tired" />;
+
+// function SymptomsAbsent() {}
 
 /**
  *
@@ -95,9 +122,7 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
               return (
                 <div key={entrySymptoms.id} className="flex gap-2 flex-wrap">
                   {entrySymptoms.has_tired ? (
-                    <span className="text-pink-700 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
-                      Tired
-                    </span>
+                    <SymptomsResult label="Tired" />
                   ) : (
                     <span className="text-purple-500 text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded p-1">
                       Not tired

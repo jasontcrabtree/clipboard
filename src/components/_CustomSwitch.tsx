@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  * @param {{switchLabel: string}} props Switch Label
  * @returns {JSX} JSX Stateless Component
  */
-function CustomSwitch({ switchLabel, id, name }) {
+function CustomSwitch({ switchLabel, id, name }): JSX.Element {
   const [enabled, setEnabled] = useState(false);
 
   return (
