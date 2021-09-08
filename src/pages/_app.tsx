@@ -1,5 +1,3 @@
-// @ts-check
-
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';

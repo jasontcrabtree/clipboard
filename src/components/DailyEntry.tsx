@@ -4,7 +4,7 @@ import CustomSwitch from './_CustomSwitch';
  *
  * @returns {function} JSX Stateless Component
  */
-function DailyEntry() {
+function DailyEntry(): JSX.Element {
   return (
     <form className="flex flex-col self-center gap-4 w-10/12 bg-gray-100 p-4 rounded-lg">
       <label

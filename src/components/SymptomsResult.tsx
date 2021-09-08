@@ -13,7 +13,7 @@ export default function SymptomsResult({
   label,
   present,
 }: SymptomsDisplayProps): JSX.Element {
-  console.log(label);
+  // console.log(label);
 
   return (
     <span

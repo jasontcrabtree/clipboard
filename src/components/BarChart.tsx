@@ -47,7 +47,7 @@ export default function BarChartGraph(): JSX.Element {
     backgroundColor: '#0c0325',
   };
 
-  console.log(data);
+  // console.log(data);
   return (
     <BarChart
       className="capitalize"

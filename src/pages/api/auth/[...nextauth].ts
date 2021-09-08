@@ -107,6 +107,7 @@ export default NextAuth({
       session.token = encodedToken;
       return Promise.resolve(session);
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async jwt(token, user, account, profile, isNewUser) {
       const isUserSignedIn = !!user;
       // make a http call to our graphql api
@@ -126,7 +127,7 @@ export default NextAuth({
           .then((user) => user.json())
           .catch((error) => console.log(error));
 
-        console.log(user);
+        // console.log(user);
 
         // if doesnt, add to db
         if (!data.users.length) {
@@ -137,6 +138,7 @@ export default NextAuth({
             }
           }`;
 
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { data } = await fetch(process.env.GRAPHQL_ENDPOINT, {
             method: 'POST',
             headers: {

@@ -31,7 +31,7 @@ function AllEntries(): JSX.Element {
     fetcher,
   );
 
-  console.log(data);
+  // console.log(data);
 
   if (error) {
     console.warn(error);

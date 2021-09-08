@@ -53,7 +53,7 @@ function AllDailyEntries({ limit = 1 }: DailyEntryProps): JSX.Element {
 
   if (!data) return <div>Loading</div>;
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <ul className="flex flex-col gap-4 mb-4">

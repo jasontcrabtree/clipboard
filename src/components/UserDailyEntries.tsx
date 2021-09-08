@@ -15,9 +15,10 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
 
   const { data, error } = useSWR(
     `query DailyEntriesByUser {
-      daily_entries(where: {user_id: {_eq: "${userId}"}}, order_by: {created_at: desc}) {
+      daily_entries(where: {user_id: {_eq: "${userId}"}}, order_by: {day: desc}) {
         id
         created: created_at
+        day
         daySummary: day_summary
         entryJoinSymptoms: daily_entries_has_join_to_symptoms {
           entrySymptoms: daily_entries_symptoms_join_table_symptoms {
@@ -54,7 +55,7 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
             key={entryData?.id}
           >
             <span className="font-semibold opacity-40 text-blue-400">
-              {formatDate(entryData.created)}
+              {formatDate(entryData.day)}
             </span>
             <h3 className="font-semibold">{entryData.daySummary}</h3>
             {entryData?.entryJoinSymptoms.map((entryData) => {
