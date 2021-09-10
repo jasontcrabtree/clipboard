@@ -149,6 +149,7 @@ export default NextAuth({
         algorithm: 'HS256',
       });
 
+      // @ts-ignore
       const userQuery = `query findUser { users(where: {id: {_eq: "${token.sub}"}}) { id, user_id }}`;
 
       const res = await fetch(process.env.GRAPHQL_ENDPOINT, {
