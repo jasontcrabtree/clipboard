@@ -11,16 +11,19 @@ import PrimaryNav from '../components/PrimaryNav';
  * @param {pageProps} pageProps NextJS pageProps
  * @returns {function} JSX Function
  */
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps): JSX.Element {
   return (
-    <Provider session={pageProps.session}>
+    <Provider session={session}>
       <Head>
         <title>Clipboard</title>
         <link rel="shortcut icon" href="/Favicon.svg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <PrimaryNav />
-      <main className="bg-gray-900 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center leading-loose">
+      <main className="bg-gray-900 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center leading-loose text-gray-500">
         <div className="max-w-3xl w-96 mx-auto">
           <Component {...pageProps} />
         </div>
@@ -28,5 +31,22 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     </Provider>
   );
 }
+
+// import { SessionProvider } from "next-auth/react"
+// import { SessionProvider } from 'next-auth/providers';
+// export default function App({
+//   Component,
+//   pageProps: { session, ...pageProps },
+// }) {
+//   return (
+//     <SessionProvider
+//       session={session}
+//       // Re-fetch session every 5 minutes
+//       refetchInterval={5 * 60}
+//     >
+//       <Component {...pageProps} />
+//     </SessionProvider>
+//   )
+// }
 
 export default MyApp;

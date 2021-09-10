@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/client';
-import { HiChartBar, HiHome, HiPlusCircle, HiUser } from 'react-icons/hi';
+import {
+  HiChartBar,
+  HiHome,
+  HiOutlinePlusCircle,
+  HiPlusCircle,
+  HiUser,
+} from 'react-icons/hi';
 import { GiExitDoor } from 'react-icons/gi';
 
 /**
@@ -9,8 +15,6 @@ import { GiExitDoor } from 'react-icons/gi';
  */
 function PrimaryNav(): JSX.Element {
   const [session, loading] = useSession();
-
-  // console.log(session);
 
   if (loading)
     return <div className="bg-gray-900 text-gray-500">Loading …</div>;
@@ -29,6 +33,13 @@ function PrimaryNav(): JSX.Element {
           <Link href="/new">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiPlusCircle size="24" />
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/new-v2">
+            <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
+              <HiOutlinePlusCircle size="24" />
             </a>
           </Link>
         </li>

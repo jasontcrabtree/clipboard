@@ -6,7 +6,7 @@ import { Dialog, Transition } from '@headlessui/react';
  * @returns {function} JSX Stateless Component
  */
 export default function KBShortcutsTooltip(): JSX.Element {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   /**
    * @returns {function} Changes modal state
@@ -24,7 +24,7 @@ export default function KBShortcutsTooltip(): JSX.Element {
 
   return (
     <>
-      <div className="fixed inset-96 right-0 flex items-center justify-center">
+      <div className="fixed inset-0 right-0 bottom-20 right-20">
         <button
           type="button"
           onClick={openModal}
@@ -37,7 +37,7 @@ export default function KBShortcutsTooltip(): JSX.Element {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="inset-x-0 bottom-20 fixed"
           onClose={closeModal}
         >
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
@@ -78,9 +78,11 @@ export default function KBShortcutsTooltip(): JSX.Element {
                   Keyboard Shortcuts
                 </Dialog.Title>
                 <div className="mt-2">
+                  <a href="mailto:jasontcrabtree@gmail.com">
+                    Request new keyboard shortcuts via email
+                  </a>
                   <p className="text-sm text-gray-500">
-                    Request new keyboard shortcuts via{' '}
-                    <a href="mailto:jasontcrabtree@gmail.com">email</a>
+                    <kbd>CMD + J</kbd>
                   </p>
                 </div>
 
