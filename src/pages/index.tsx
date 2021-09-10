@@ -1,5 +1,6 @@
 // import AllEntries from '../components/AllEntries';
 import { useSession } from 'next-auth/client';
+import { string } from 'prop-types';
 import KBShortcutsTooltip from '../components/KBShortcutsTooltip';
 import UserDailyEntries from '../components/UserDailyEntries';
 
@@ -7,6 +8,7 @@ interface NewType {
   props: {
     data: object;
   };
+  user: string;
 }
 
 // eslint-disable-next-line require-jsdoc
@@ -44,6 +46,8 @@ export default function Home(): JSX.Element {
   if (!session) return <div>Loading</div>;
 
   console.log(`Session`, session);
+
+  // @ts-ignore
   const user = session.user_id.data.users[0].user_id;
   console.log(user);
 
