@@ -32,21 +32,4 @@ function MyApp({
   );
 }
 
-// import { SessionProvider } from "next-auth/react"
-// import { SessionProvider } from 'next-auth/providers';
-// export default function App({
-//   Component,
-//   pageProps: { session, ...pageProps },
-// }) {
-//   return (
-//     <SessionProvider
-//       session={session}
-//       // Re-fetch session every 5 minutes
-//       refetchInterval={5 * 60}
-//     >
-//       <Component {...pageProps} />
-//     </SessionProvider>
-//   )
-// }
-
 export default MyApp;

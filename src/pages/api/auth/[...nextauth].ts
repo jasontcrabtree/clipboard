@@ -95,10 +95,9 @@ export default NextAuth({
   // when an action is performed.
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
-    async signIn(user, account, profile) {
-      // console.log(user, account, profile);
-      return true;
-    },
+    // async signIn(user, account, profile) {
+    //   return true;
+    // },
     // async redirect(url, baseUrl) { return baseUrl },
     // async session(session, user) { return session },
     // async jwt(token, user, account, profile, isNewUser) { return token }
@@ -122,9 +121,7 @@ export default NextAuth({
           .then((user) => user.json())
           .catch((error) => console.log(error));
 
-        // console.log(user);
-
-        // if doesnt, add to db
+        // if user doesn't exist, add them to db
         if (!data.users.length) {
           const mutation = `mutation insertUser {
             insert_users_one(object: {id: "${user.id}", name: "${user.name}"}) {
@@ -152,24 +149,7 @@ export default NextAuth({
         algorithm: 'HS256',
       });
 
-      /* console.log(`Token contains: `, token);
-      const userQuery = `query findUser { users(where: {id: {_eq: "${token.sub}"}})
-        { id, user_id }}`;
-      const userId = await fetch(process.env.GRAPHQL_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET,
-        },
-        body: JSON.stringify({ query: userQuery }),
-      })
-        // .then((body) => console.log(`Body`, body))
-        .then((res) => res.json())
-        .then((data) => console.log('data returned:', data.users))
-        .catch((error) => console.log(error));
-
-      console.log(userId); */
-      const userQuery = `query findUser { users(where: {id: {_eq: "26457118"}})
-        { id, user_id }}`;
+      const userQuery = `query findUser { users(where: {id: {_eq: "26457118"}}) { id, user_id }}`;
 
       const res = await fetch(process.env.GRAPHQL_ENDPOINT, {
         method: 'POST',
@@ -178,15 +158,11 @@ export default NextAuth({
         },
         body: JSON.stringify({ query: userQuery }),
       });
-
       const data = await res.json().catch((error) => console.log(error));
-
-      // const userData = data?.data?.users[0]?.user_id;
-      const userData = data;
 
       session.id = token.id;
       session.token = encodedToken;
-      session.user_id = userData;
+      session.user_id = data;
       return Promise.resolve(session);
     },
     redirect(url, baseUrl) {

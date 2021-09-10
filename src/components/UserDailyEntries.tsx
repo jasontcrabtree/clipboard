@@ -10,7 +10,7 @@ type DailyEntryProps = {
  *
  * @returns {function} JSX Component
  */
-function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
+function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
   // This is probably incorrect. Because we are using API routes to securely access data (via the fetcher function), and I don't want to change the graphql endpoint for each function, we need to change the query client side, not pass in variables, for SWR, I guess? This is the only way I can get it to work for SWR at least.
 
   const { data, error } = useSWR(
@@ -41,9 +41,11 @@ function UserDailyEntries({ userId = '123' }: DailyEntryProps): JSX.Element {
     return <div>Failed to load due to error {error}</div>;
   }
 
-  if (!data) return <div className="text-gray-200">Loading</div>;
+  if (!data) return <div>Loading</div>;
 
   const entry = data.daily_entries;
+
+  if (!entry) return <div>Log in</div>;
 
   return (
     <ul className="flex flex-col gap-4 mb-4 text-gray-400">
