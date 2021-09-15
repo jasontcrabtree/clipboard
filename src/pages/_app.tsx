@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { Provider, signIn } from 'next-auth/client';
+import { Provider } from 'next-auth/client';
 import '../styles/reset.css';
 import '../styles/globals.css';
 import PrimaryNav from '../components/PrimaryNav';
-import { HiUser } from 'react-icons/hi';
 
 /**
  * Global wrapper component that holds meta value, shared layout styles, shared components (e.g. primary nav). Each page component is wrapped with this component, via the Component + pageProps NextJS functionality.
@@ -24,7 +23,7 @@ function MyApp({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <main className="bg-gray-900 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center flex-col leading-loose text-gray-500">
-        {session ? (
+        {/* {session ? (
           <PrimaryNav />
         ) : (
           <div className="bg-gray-900 text-gray-200 place-content-center">
@@ -40,9 +39,10 @@ function MyApp({
               Log in
             </a>
           </div>
-        )}
+        )} */}
         <div className="max-w-3xl w-96 mx-auto">
           <Component {...pageProps} />
+          <PrimaryNav />
         </div>
       </main>
     </Provider>

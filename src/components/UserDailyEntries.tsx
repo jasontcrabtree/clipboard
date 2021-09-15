@@ -1,6 +1,8 @@
+import { HiOutlineArrowRight } from 'react-icons/hi';
 import useSWR from 'swr';
 import { fetcher, formatDate } from '../lib/utils';
 import SymptomsResult from './SymptomsResult';
+import Link from 'next/link';
 
 type DailyEntryProps = {
   userId: string;
@@ -50,21 +52,25 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
   return (
     <ul className="flex flex-col gap-4 mb-4 text-gray-400">
       {entry?.map((entryData) => {
-        // console.log(entryData);
+        console.log(entryData);
         return (
           <li
             className="p-2 border border-gray-800 bg-gray-900 rounded shadow-xl"
             key={entryData?.id}
           >
-            <span className="font-semibold opacity-40 text-blue-400">
-              {formatDate(entryData.day)}
-            </span>
+            <div className="flex flex-row gap-2 items-center">
+              <span className="font-semibold opacity-40 text-blue-400">
+                {formatDate(entryData.day)}
+              </span>
+              <Link href={`/entry/${entryData.id}`}>
+                <a className="ml-auto p-2">
+                  <HiOutlineArrowRight />
+                </a>
+              </Link>
+            </div>
             <h3 className="font-semibold">{entryData.daySummary}</h3>
             {entryData?.entryJoinSymptoms.map((entryData) => {
               const entrySymptoms = entryData.entrySymptoms[0];
-
-              // console.log(entrySymptoms);
-
               return (
                 <div key={entrySymptoms.id} className="flex gap-2 flex-wrap">
                   {entrySymptoms.tired ? (
