@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import {
+  HiCalendar,
   HiChartBar,
   HiHome,
+  HiOutlineCalendar,
   HiOutlinePlusCircle,
   HiPlusCircle,
   HiUser,
@@ -46,6 +48,13 @@ function PrimaryNav(): JSX.Element {
           <Link href="/dashboard">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiChartBar size="24" />
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/calendar">
+            <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
+              <HiOutlineCalendar size="24" />
             </a>
           </Link>
         </li>

@@ -21,6 +21,10 @@
 
 - [EsLint-Require-JSDoc Rules reference](https://eslint.org/docs/rules/require-jsdoc)
 
-{"query":"query ALL_ARTICLES_PAGINATED($limit: Int = 4) {\n articles(limit: $limit, order_by: {created_at: desc}) {\n id\n title\n content\n }\n }","variables":{"limit":10}}
+# React Calendar Proof of concepts
 
-{"query":"query ALL_ARTICLES_PAGINATED($limit: Int = 4) {\n articles(limit: $limit, order_by: {created_at: desc}) {\n id\n title\n content\n }\n }\n","variables":{"limit":10},"operationName":"ALL_ARTICLES_PAGINATED"}
+Trialing calendars
+
+- react-day-picker@next
+- react-day-picker
+- react-calendar
