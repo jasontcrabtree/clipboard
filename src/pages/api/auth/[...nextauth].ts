@@ -125,6 +125,10 @@ export default NextAuth({
         if (!data?.users?.length) {
           console.log('No data users');
 
+          console.log(`User`, user);
+          console.log(`User ID`, user?.id);
+          console.log(`User Name`, user?.name);
+
           const mutation = `mutation insertUser {
             insert_users_one(object: {id: "${user.id}", name: "${user.name}"}) {
               id
