@@ -4,6 +4,7 @@ import {
   HiCalendar,
   HiChartBar,
   HiHome,
+  HiLightBulb,
   HiOutlineCalendar,
   HiOutlineHome,
   HiOutlinePlusCircle,
@@ -23,7 +24,7 @@ function PrimaryNav(): JSX.Element {
 
   return (
     <nav className="mx-auto bg-blue-500 p-0 rounded-xl max-w-xl w-112 flex justify-center inset-x-0 bottom-20 fixed shadow-lg z-10 text-gray-900">
-      <ul className="flex flex-row justify-center gap-6 w-full">
+      <ul className="flex flex-row justify-center gap-6 w-full flex-wrap">
         <li>
           <Link href="/">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
@@ -34,17 +35,17 @@ function PrimaryNav(): JSX.Element {
         <li>
           <Link href="/traffic-lights">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
-              <HiOutlineHome size="24" />
+              <HiLightBulb size="24" />
             </a>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="/new">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiPlusCircle size="24" />
             </a>
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link href="/new-v2">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">

@@ -1,11 +1,14 @@
 import { request } from 'graphql-request';
 import { useForm } from 'react-hook-form';
+import { useSession } from '../../node_modules/next-auth/client';
 
 /**
  *
  * @returns {function} JSX Component
  */
 function NewEntryV2(): JSX.Element {
+  const [session, loading] = useSession();
+
   const {
     register,
     handleSubmit,
@@ -88,19 +91,30 @@ function NewEntryV2(): JSX.Element {
   //   console.log(s, i);
   // });
 
+  if (!session) return null;
+
+  if (loading) return <div>Loading</div>;
+
+  if (session) {
+    // @ts-ignore
+    const user = session?.user_id?.data?.users[0].user_id;
+  }
+
   return (
     <form
       className="flex flex-col gap-6 rounded min-w-full"
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
-        defaultValue="2feb2bef-48f0-41f9-aff1-34314eab7369"
+        defaultValue={
+          session ? `${session?.user_id?.data?.users[0].user_id}` : 'no user'
+        }
         {...register('user_id')}
-        className="p-2 rounded border-gray-300 text-gray-400"
+        className="p-2 rounded border-gray-300 text-gray-400 hidden"
         type="text"
       />
       <input
-        defaultValue="2021-09-08"
+        defaultValue=""
         {...register('day')}
         className="p-2 rounded border-gray-300"
         type="date"
@@ -111,7 +125,7 @@ function NewEntryV2(): JSX.Element {
         className="p-2 rounded border-gray-300"
         type="text"
       />
-      <fieldset className="p-2 text-gray-200">
+      <fieldset className="p-2 text-gray-200 flex flex-wrap flex-row">
         <legend className="flex flex-wrap">Toggle Present Symptoms</legend>
         {symptomsList.map((symptom) => {
           // console.log(symptom);
