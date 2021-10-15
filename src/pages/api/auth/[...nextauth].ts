@@ -122,7 +122,7 @@ export default NextAuth({
           .catch((error) => console.log(error));
 
         // if user doesn't exist, add them to db
-        if (!data.users.length) {
+        if (!data?.users?.length) {
           const mutation = `mutation insertUser {
             insert_users_one(object: {id: "${user.id}", name: "${user.name}"}) {
               id
