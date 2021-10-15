@@ -52,7 +52,7 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
   return (
     <ul className="flex flex-col gap-4 mb-4 text-gray-400">
       {entry?.map((entryData) => {
-        console.log(entryData);
+        // console.log(entryData);
         return (
           <li
             className="p-2 border border-gray-800 bg-gray-900 rounded shadow-xl"

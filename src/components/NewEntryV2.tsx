@@ -100,15 +100,20 @@ function NewEntryV2(): JSX.Element {
     const user = session?.user_id?.data?.users[0].user_id;
   }
 
+  // eslint-disable-next-line require-jsdoc
+  function userID(sessionValue) {
+    const user = sessionValue?.user_id?.data?.users[0].user_id;
+    console.log(user);
+    return user;
+  }
+
   return (
     <form
       className="flex flex-col gap-6 rounded min-w-full"
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
-        defaultValue={
-          session ? `${session?.user_id?.data?.users[0].user_id}` : 'no user'
-        }
+        defaultValue={session ? userID(session) : 'no user'}
         {...register('user_id')}
         className="p-2 rounded border-gray-300 text-gray-400 hidden"
         type="text"
