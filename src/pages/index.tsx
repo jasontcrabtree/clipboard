@@ -14,7 +14,7 @@ export default function Home(): JSX.Element {
   if (loading) return <div>Loading</div>;
 
   // @ts-ignore
-  const user = session.user_id.data.users[0].user_id;
+  const user = session?.user_id?.data?.users[0].user_id;
 
   return (
     <section className="flex flex-col w-full gap-8">
