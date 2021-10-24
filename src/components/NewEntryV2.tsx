@@ -6,7 +6,7 @@ import { useSession } from '../../node_modules/next-auth/client';
  *
  * @returns {function} JSX Component
  */
-function NewEntryV2(value: boolean): JSX.Element {
+function NewEntryV2(): JSX.Element {
   const [session, loading] = useSession();
 
   const {
