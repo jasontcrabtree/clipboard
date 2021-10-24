@@ -91,7 +91,7 @@ function SmartForm() {
         type="text"
       />
 
-      <Controller
+      {/* <Controller
         name="date"
         control={control}
         render={({ field }) => (
@@ -99,9 +99,10 @@ function SmartForm() {
             type="date"
             onChange={(e) => field.onChange(e)}
             selected={field.value}
+
           />
         )}
-      />
+      /> */}
       <Controller
         name="rating"
         control={control}
