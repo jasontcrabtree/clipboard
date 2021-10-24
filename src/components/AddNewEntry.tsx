@@ -33,7 +33,7 @@ function AddNewEntry(): JSX.Element {
               id
               created_at
               has_tired
-              has_headachie
+              has_headache
               has_sore_neck
               has_sore_stomach
               has_digestive_issues
@@ -62,7 +62,7 @@ function AddNewEntry(): JSX.Element {
                 has_digestive_issues: values.has_digestive_issues,
                 has_sore_neck: values.has_sore_neck,
                 has_sore_stomach: values.has_sore_stomach,
-                has_headachie: values.has_headachie,
+                has_headache: values.has_headache,
               },
             },
           },
@@ -119,7 +119,7 @@ function AddNewEntry(): JSX.Element {
         Headache?
         <input
           defaultValue="false"
-          {...register('has_headachie')}
+          {...register('has_headache')}
           className="p-2 rounded border-gray-300 text-gray-700"
           type="text"
         />

@@ -22,7 +22,7 @@ function MyApp({
         <link rel="shortcut icon" href="/Favicon.svg" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <main className="bg-gray-900 min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center flex-col leading-loose text-gray-500">
+      <main className=" min-h-screen h-auto w-screen/10 p-4 pb-48 flex justify-center flex-col leading-loose bg-blue-50 text-gray-800 dark:bg-gray-900 dark:text-gray-500">
         {/* {session ? (
           <PrimaryNav />
         ) : (

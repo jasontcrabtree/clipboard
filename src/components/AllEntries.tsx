@@ -20,7 +20,7 @@ function AllEntries(): JSX.Element {
             id
             created_at
             has_digestive_issues
-            has_headachie
+            has_headache
             has_sore_neck
             has_sore_stomach
             has_tired

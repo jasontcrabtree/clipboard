@@ -29,7 +29,7 @@ function UserDailyEntriesTrafficLights({
             id
             created: created_at
             digestion: has_digestive_issues
-            headache: has_headachie
+            headache: has_headache
             soreNeck: has_sore_neck
             soreStomach: has_sore_stomach
             tired: has_tired

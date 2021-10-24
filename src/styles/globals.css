@@ -5,3 +5,9 @@
 html {
   background-color: #0f131e;
 }
+
+@layer components {
+  .card-colours {
+    @apply border-gray-300 bg-gray-200 dark:border-gray-800 dark:bg-gray-900;
+  }
+}

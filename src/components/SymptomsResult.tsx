@@ -18,7 +18,7 @@ export default function SymptomsResult({
   return (
     <span
       className={clsx(
-        'text-sm uppercase font-medium border-gray-800 bg-gray-800 border rounded-md p-1',
+        'text-sm uppercase font-medium border-gray-300 bg-gray-100 dark:border-gray-800 dark:bg-gray-800 border rounded-md p-1',
         { 'text-pink-700': present, 'text-purple-500': !present },
       )}
     >

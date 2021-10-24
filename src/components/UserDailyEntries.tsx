@@ -27,7 +27,7 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
             id
             created: created_at
             digestion: has_digestive_issues
-            headache: has_headachie
+            headache: has_headache
             soreNeck: has_sore_neck
             soreStomach: has_sore_stomach
             tired: has_tired
@@ -50,16 +50,16 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
   if (!entry) return <div>Log in</div>;
 
   return (
-    <ul className="flex flex-col gap-4 mb-4 text-gray-400">
+    <ul className="flex flex-col gap-4 mb-4">
       {entry?.map((entryData) => {
         // console.log(entryData);
         return (
           <li
-            className="p-2 border border-gray-800 bg-gray-900 rounded shadow-xl"
+            className="p-4 border rounded-lg shadow-xl card-colours border-indigo-200 bg-white text-gray-800 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400"
             key={entryData?.id}
           >
             <div className="flex flex-row gap-2 items-center">
-              <span className="font-semibold opacity-40 text-blue-400">
+              <span className="font-semibold opacity-90 dark:text-blue-400 text-blue-900">
                 {formatDate(entryData.day)}
               </span>
               <Link href={`/entry/${entryData.id}`}>
@@ -73,17 +73,6 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
               const entrySymptoms = entryData.entrySymptoms[0];
               return (
                 <div key={entrySymptoms.id} className="flex gap-2 flex-wrap">
-                  {entrySymptoms.tired ? (
-                    <SymptomsResult
-                      label="Tired"
-                      present={entrySymptoms.tired}
-                    />
-                  ) : (
-                    <SymptomsResult
-                      label="Not Tired"
-                      present={entrySymptoms.tired}
-                    />
-                  )}
                   {entrySymptoms.headache ? (
                     <SymptomsResult
                       label="Headache"
@@ -93,6 +82,17 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
                     <SymptomsResult
                       label="No Headache"
                       present={entrySymptoms.headache}
+                    />
+                  )}
+                  {entrySymptoms.tired ? (
+                    <SymptomsResult
+                      label="Tired"
+                      present={entrySymptoms.tired}
+                    />
+                  ) : (
+                    <SymptomsResult
+                      label="Not Tired"
+                      present={entrySymptoms.tired}
                     />
                   )}
                   {entrySymptoms.soreNeck ? (

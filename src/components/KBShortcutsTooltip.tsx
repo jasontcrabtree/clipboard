@@ -24,7 +24,7 @@ export default function KBShortcutsTooltip(): JSX.Element {
 
   return (
     <>
-      <div className="fixed inset-0 right-0 bottom-20 right-20">
+      <div className="fixed inset-0 bottom-20 right-20">
         <button
           type="button"
           onClick={openModal}

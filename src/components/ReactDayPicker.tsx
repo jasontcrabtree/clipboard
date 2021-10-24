@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { DayPicker } from 'react-day-picker';
+import DayPicker from 'react-day-picker';
 import DailyEntryByDate from './DailyEntryByDate';
-import 'react-day-picker/style.css';
+// import 'react-day-picker/style.css';
 
 // eslint-disable-next-line require-jsdoc
 export default function Example(): JSX.Element {
@@ -42,12 +42,12 @@ export default function Example(): JSX.Element {
         <div>Select a day</div>
       )}
       <DayPicker
-        mode="single"
-        defaultMonth={new Date()}
-        onSelect={setSelected}
+        />
+        {/* // mode="single"
+        // defaultMonth={new Date()}
+        // onSelect={setSelected}
         // footer={footer}
-        disabled={disabledDays}
-      />
+        // disabled={disabledDays} */}
       {/* <DailyEntryByDate day={'2021-09-08'} /> */}
     </div>
   );

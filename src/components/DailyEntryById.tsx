@@ -23,7 +23,7 @@ function DailyEntryById({ entryId }: DailyEntryProps): JSX.Element {
               id
               created: created_at
               digestive: has_digestive_issues
-              headache: has_headachie
+              headache: has_headache
               neck: has_sore_neck
               stomach: has_sore_stomach
               tired: has_tired

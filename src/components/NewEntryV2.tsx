@@ -6,7 +6,7 @@ import { useSession } from '../../node_modules/next-auth/client';
  *
  * @returns {function} JSX Component
  */
-function NewEntryV2(): JSX.Element {
+function NewEntryV2(value: boolean): JSX.Element {
   const [session, loading] = useSession();
 
   const {
@@ -36,7 +36,7 @@ function NewEntryV2(): JSX.Element {
               id
               created_at
               has_tired
-              has_headachie
+              has_headache
               has_sore_neck
               has_sore_stomach
               has_digestive_issues
@@ -65,7 +65,7 @@ function NewEntryV2(): JSX.Element {
                 has_digestive_issues: values.has_digestive_issues,
                 has_sore_neck: values.has_sore_neck,
                 has_sore_stomach: values.has_sore_stomach,
-                has_headachie: values.has_headachie,
+                has_headache: values.has_headache,
               },
             },
           },
@@ -80,32 +80,30 @@ function NewEntryV2(): JSX.Element {
   };
 
   const symptomsList = [
+    ['has_headache', 'Headache'],
     ['has_tired', 'Tired'],
-    ['has_headachie', 'Headache'],
     ['has_digestive_issues', 'Digestive Issues'],
     ['has_sore_neck', 'Sore Neck'],
     ['has_sore_stomach', 'Sore Stomach'],
   ];
 
-  // symptomsList.map((s, i) => {
-  //   console.log(s, i);
-  // });
-
   if (!session) return null;
 
   if (loading) return <div>Loading</div>;
 
-  if (session) {
-    // @ts-ignore
-    const user = session?.user_id?.data?.users[0].user_id;
-  }
+  // if (session) {
+  //   // @ts-ignore
+  //   const user = session?.user_id?.data?.users[0].user_id;
+  // }
 
   // eslint-disable-next-line require-jsdoc
   function userID(sessionValue) {
     const user = sessionValue?.user_id?.data?.users[0].user_id;
-    console.log(user);
     return user;
   }
+
+  const today = new Date().toISOString().slice(0, 10);
+  console.log(today);
 
   return (
     <form
@@ -119,7 +117,7 @@ function NewEntryV2(): JSX.Element {
         type="text"
       />
       <input
-        defaultValue=""
+        defaultValue={today}
         {...register('day')}
         className="p-2 rounded border-gray-300"
         type="date"
@@ -133,10 +131,13 @@ function NewEntryV2(): JSX.Element {
       <fieldset className="p-2 text-gray-200 flex flex-wrap flex-row">
         <legend className="flex flex-wrap">Toggle Present Symptoms</legend>
         {symptomsList.map((symptom) => {
-          // console.log(symptom);
           return (
             <label key={symptom[0]} className="pr-4 whitespace-nowrap">
-              <input type="checkbox" name={symptom[0]} defaultValue="false" />
+              <input
+                type="checkbox"
+                defaultChecked={false}
+                {...register(symptom[0])}
+              />
               <span className="pl-1">{symptom[1]}</span>
             </label>
           );
