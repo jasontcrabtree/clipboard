@@ -29,19 +29,12 @@ function PrimaryNav(): JSX.Element {
   if (loading) return null;
 
   return (
-    <nav className="mx-auto bg-blue-500 p-0 rounded-xl max-w-3xl w-112 flex justify-center inset-x-0 bottom-20 fixed shadow-lg z-10 text-gray-900">
-      <ul className="flex flex-row justify-center gap-6 w-full flex-wrap flex-nowrap">
+    <nav className="mx-auto bg-blue-500 p-0 px-6 rounded-xl w-max flex justify-center inset-x-0 bottom-20 fixed shadow-lg z-10 text-gray-900">
+      <ul className="flex flex-row justify-center gap-2 w-full flex-wrap">
         <li>
           <Link href="/">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiHome size="24" />
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/traffic-lights">
-            <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
-              <HiLightBulb size="24" />
             </a>
           </Link>
         </li>
@@ -53,7 +46,7 @@ function PrimaryNav(): JSX.Element {
           </Link>
         </li> */}
         <li>
-          <Link href="/new-v2">
+          <Link href="/new">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiOutlinePlusCircle size="24" />
             </a>
@@ -63,13 +56,6 @@ function PrimaryNav(): JSX.Element {
           <Link href="/dashboard">
             <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
               <HiChartBar size="24" />
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/calendar">
-            <a className="p-4 m-auto flex flex-row justify-center content-center gap-2">
-              <HiOutlineCalendar size="24" />
             </a>
           </Link>
         </li>
@@ -99,7 +85,7 @@ function PrimaryNav(): JSX.Element {
 
               <Menu.Items className="absolute bottom-16 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="px-1 py-2 flex flex-col gap-2">
-                  <Menu.Item>
+                  <Menu.Item refName="Log Out">
                     {({ active }) => (
                       <li className="flex flex-row gap-4 self-center bg-violet-500 text-gray-900 rounded-md items-center w-full px-2  text-sm border-gray-200 bg-gray-100">
                         {session.user.image && (
@@ -109,42 +95,74 @@ function PrimaryNav(): JSX.Element {
                             }}
                           />
                         )}
-                        <a
-                          className="flex flex-row gap-2 w-full h-full py-2"
-                          href="/api/auth/signout"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            signOut();
-                          }}
-                        >
-                          <GiExitDoor size="24" />
-                          Log Out
-                        </a>
+
+                        {active ? (
+                          <a
+                            className="flex flex-row gap-2 w-full h-full py-2 text-blue-600"
+                            href="/api/auth/signout"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              signOut();
+                            }}
+                          >
+                            <GiExitDoor size="24" />
+                            Log Out
+                          </a>
+                        ) : (
+                          <a
+                            className="flex flex-row gap-2 w-full h-full py-2"
+                            href="/api/auth/signout"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              signOut();
+                            }}
+                          >
+                            <GiExitDoor size="24" />
+                            Log Out
+                          </a>
+                        )}
                       </li>
                     )}
                   </Menu.Item>
-                  <Menu.Item>
+                  <Menu.Item refName="Traffic Lights">
                     {({ active }) => (
-                      <button
-                        className={`${
-                          active
-                            ? 'bg-violet-500 text-gray-400'
-                            : 'text-gray-900'
-                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      >
+                      <li className="flex flex-row gap-4 self-center bg-violet-500 text-gray-900 rounded-md items-center w-full px-2  text-sm border-gray-200 bg-gray-100">
                         {active ? (
-                          <HiPencil
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
+                          <Link href="/traffic-lights">
+                            <a className="flex flex-row gap-2 w-full h-full py-2 text-blue-600">
+                              <HiLightBulb size="24" />
+                              Traffic Lights
+                            </a>
+                          </Link>
                         ) : (
-                          <HiPencilAlt
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
+                          <Link href="/traffic-lights">
+                            <a className="flex flex-row gap-2 w-full h-full py-2">
+                              <HiLightBulb size="24" />
+                              Traffic Lights
+                            </a>
+                          </Link>
                         )}
-                        Edit
-                      </button>
+                      </li>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item refName="Traffic Lights">
+                    {({ active }) => (
+                      <li className="flex flex-row gap-4 self-center bg-violet-500 text-gray-900 rounded-md items-center w-full px-2  text-sm border-gray-200 bg-gray-100">
+                        {active ? (
+                          <Link href="/calendar">
+                            <a className="flex flex-row gap-2 w-full h-full py-2 text-blue-600">
+                              <HiOutlineCalendar size="24" />
+                            </a>
+                          </Link>
+                        ) : (
+                          <Link href="/calendar">
+                            <a className="flex flex-row gap-2 w-full h-full py-2">
+                              <HiOutlineCalendar size="24" />
+                              Calendar
+                            </a>
+                          </Link>
+                        )}
+                      </li>
                     )}
                   </Menu.Item>
                 </div>
@@ -173,6 +191,19 @@ function PrimaryNav(): JSX.Element {
                       </button>
                     )}
                   </Menu.Item>
+                  {/* <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active
+                            ? 'bg-violet-500 text-gray-400'
+                            : 'text-gray-900'
+                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      >
+                        <ThemeToggle />
+                      </button>
+                    )}
+                  </Menu.Item> */}
                 </div>
               </Menu.Items>
             </Menu>

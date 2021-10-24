@@ -54,7 +54,7 @@ function UserDailyEntriesTrafficLights({
   return (
     <ul className="flex flex-col gap-0 mb-4 text-gray-400">
       {entry?.map((entryData) => {
-        console.log(entryData);
+        // console.log(entryData);
         return (
           <li
             className="px-2 border border-gray-800 bg-gray-900 rounded shadow-xl flex flex-row"
@@ -66,6 +66,7 @@ function UserDailyEntriesTrafficLights({
               </span>
               {entryData?.entryJoinSymptoms.map((entryData) => {
                 const entrySymptoms = entryData.entrySymptoms[0];
+                // console.log(entrySymptoms);
                 return (
                   <div key={entrySymptoms.id} className="flex gap-2 flex-wrap">
                     {entrySymptoms.tired ? (

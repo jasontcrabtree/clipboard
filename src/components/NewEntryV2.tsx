@@ -1,4 +1,5 @@
 import { request } from 'graphql-request';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSession } from '../../node_modules/next-auth/client';
 
@@ -8,6 +9,7 @@ import { useSession } from '../../node_modules/next-auth/client';
  */
 function NewEntryV2(): JSX.Element {
   const [session, loading] = useSession();
+  const [noSymptomsActivated, setNoSymptomsActivated] = useState(false);
 
   const {
     register,
@@ -40,6 +42,36 @@ function NewEntryV2(): JSX.Element {
               has_sore_neck
               has_sore_stomach
               has_digestive_issues
+              has_awake_during_night
+              has_bloating
+              has_bad_breath
+              has_blurred_vision
+              has_bodyache
+              has_cold_sensitivity
+              has_concentration_issues
+              has_constipation
+              has_crying
+              has_diarrhea
+              has_distracted
+              has_dizzy
+              has_emotional_eating
+              has_energy_crash
+              has_extreme_energy_crash
+              has_gassy
+              has_lightheaded
+              has_memory_issues
+              has_nap
+              has_no_symptoms
+              has_ovary_pain
+              has_pms
+              has_overeating
+              has_poor_sleep
+              has_runny_nose
+              has_sore_teeth
+              has_sore_throat
+              has_speaking_issues
+              has_tender_breasts
+              has_tinnitus
           }
         }
       }
@@ -47,7 +79,7 @@ function NewEntryV2(): JSX.Element {
   `;
 
   const onSubmit = (values) => {
-    console.log(values);
+    // console.log(values);
 
     /***
      * Puts RHF values into the correct data shape for the graphql mutation
@@ -66,6 +98,36 @@ function NewEntryV2(): JSX.Element {
                 has_sore_neck: values.has_sore_neck,
                 has_sore_stomach: values.has_sore_stomach,
                 has_headache: values.has_headache,
+                has_awake_during_night: values.has_awake_during_night,
+                has_bloating: values.has_bloating,
+                has_bad_breath: values.has_bad_breath,
+                has_blurred_vision: values.has_blurred_vision,
+                has_bodyache: values.has_bodyache,
+                has_cold_sensitivity: values.has_cold_sensitivity,
+                has_concentration_issues: values.has_concentration_issues,
+                has_constipation: values.has_constipation,
+                has_crying: values.has_crying,
+                has_diarrhea: values.has_diarrhea,
+                has_distracted: values.has_distracted,
+                has_dizzy: values.has_dizzy,
+                has_emotional_eating: values.has_emotional_eating,
+                has_energy_crash: values.has_energy_crash,
+                has_extreme_energy_crash: values.has_extreme_energy_crash,
+                has_gassy: values.has_gassy,
+                has_lightheaded: values.has_lightheaded,
+                has_memory_issues: values.has_memory_issues,
+                has_nap: values.has_nap,
+                has_no_symptoms: values.has_no_symptoms,
+                has_ovary_pain: values.has_ovary_pain,
+                has_pms: values.has_pms,
+                has_overeating: values.has_overeating,
+                has_poor_sleep: values.has_poor_sleep,
+                has_runny_nose: values.has_runny_nose,
+                has_sore_teeth: values.has_sore_teeth,
+                has_sore_throat: values.has_sore_throat,
+                has_speaking_issues: values.has_speaking_issues,
+                has_tender_breasts: values.has_tender_breasts,
+                has_tinnitus: values.has_tinnitus,
               },
             },
           },
@@ -73,18 +135,48 @@ function NewEntryV2(): JSX.Element {
       },
     };
 
-    console.log(variables);
+    // console.log(variables);
 
     request('/api/graphql', mutation, variables);
     reset();
   };
 
   const symptomsList = [
+    ['has_no_symptoms', 'No Symptoms'],
     ['has_headache', 'Headache'],
     ['has_tired', 'Tired'],
     ['has_digestive_issues', 'Digestive Issues'],
     ['has_sore_neck', 'Sore Neck'],
     ['has_sore_stomach', 'Sore Stomach'],
+    ['has_awake_during_night', 'Woke up During Night'],
+    ['has_bloating', 'Bloated'],
+    ['has_bad_breath', 'Bad Breath'],
+    ['has_blurred_vision', 'Blurred Vision'],
+    ['has_bodyache', 'Body Aches'],
+    ['has_cold_sensitivity', 'Cold Sensitivity'],
+    ['has_concentration_issues', 'Concentration Issues'],
+    ['has_constipation', 'Constipated'],
+    ['has_crying', 'Cried'],
+    ['has_diarrhea', 'Diarrhea'],
+    ['has_distracted', 'Distracted'],
+    ['has_dizzy', 'Dizzy'],
+    ['has_emotional_eating', 'Emotional Eating'],
+    ['has_energy_crash', 'Energy Crash'],
+    ['has_extreme_energy_crash', 'Extreme Energy Crash'],
+    ['has_gassy', 'Gassy'],
+    ['has_lightheaded', 'Lightheaded'],
+    ['has_memory_issues', 'Nemory Issues'],
+    ['has_nap', 'Nap'],
+    ['has_ovary_pain', 'Ovary Pain'],
+    ['has_pms', 'PMS'],
+    ['has_overeating', 'Overate/Overating'],
+    ['has_poor_sleep', 'Poor Sleep'],
+    ['has_runny_nose', 'Runny Nose'],
+    ['has_sore_teeth', 'Sore Teeth'],
+    ['has_sore_throat', 'Sore Throat'],
+    ['has_speaking_issues', 'Speaking Issues'],
+    ['has_tender_breasts', 'Tender Breasts'],
+    ['has_tinnitus', 'Tinnitus'],
   ];
 
   if (!session) return null;
@@ -103,7 +195,6 @@ function NewEntryV2(): JSX.Element {
   }
 
   const today = new Date().toISOString().slice(0, 10);
-  console.log(today);
 
   return (
     <form
@@ -116,25 +207,46 @@ function NewEntryV2(): JSX.Element {
         className="p-2 rounded border-gray-300 text-gray-400 hidden"
         type="text"
       />
-      <input
-        defaultValue={today}
-        {...register('day')}
-        className="p-2 rounded border-gray-300"
-        type="date"
-      />
-      <input
-        defaultValue="A great day"
-        {...register('day_summary')}
-        className="p-2 rounded border-gray-300"
-        type="text"
-      />
-      <fieldset className="p-2 text-gray-200 flex flex-wrap flex-row">
-        <legend className="flex flex-wrap">Toggle Present Symptoms</legend>
+      <label htmlFor="day" className="flex flex-col gap-1 font-bold">
+        Entry Date
+        <input
+          defaultValue={today}
+          {...register('day')}
+          className="p-2 rounded border-gray-300 font-normal"
+          type="date"
+        />
+      </label>
+      <label htmlFor="day_summary" className="flex flex-col gap-1 font-bold">
+        <span>
+          Entry Summary
+          <span className="text-sm text-green-600 fw-semibold">(*Text)</span>
+        </span>
+        <input
+          defaultValue="A great day"
+          {...register('day_summary')}
+          className="p-2 rounded border-gray-300 font-normal"
+          type="text"
+        />
+      </label>
+      <fieldset className="p-2 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 flex flex-wrap flex-row rounded">
+        <legend className="flex flex-wrap">
+          Select Symptoms present on the day of the entry.
+        </legend>
         {symptomsList.map((symptom) => {
+          if (symptom[0] === 'has_no_symptoms') {
+            // console.log('No Symptoms');
+          }
+
+          const ref = symptom[0];
+
+          // ref === 'has_no_symptoms' ? console.log('yes') : console.log('no');
+
           return (
             <label key={symptom[0]} className="pr-4 whitespace-nowrap">
               <input
                 type="checkbox"
+                disabled={noSymptomsActivated}
+                itemRef={ref}
                 defaultChecked={false}
                 {...register(symptom[0])}
               />

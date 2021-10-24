@@ -46,8 +46,6 @@ function DailyEntryById({ entryId }: DailyEntryProps): JSX.Element {
 
   if (!entry) return <div>Log in</div>;
 
-  console.log(entry);
-
   return (
     <div key={entry.id}>
       <span className="block text-sm">{formatDate(entry.created)}</span>
