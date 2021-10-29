@@ -9,9 +9,21 @@ import UserDailyEntries from '../components/UserDailyEntries';
 export default function Home(): JSX.Element {
   const [session, loading] = useSession();
 
-  if (!session) return null;
+  if (!session)
+    return (
+      <div>
+        <p className="text-xl text-center font-semibold text-indigo-700">
+          Please log in to view entries
+        </p>
+      </div>
+    );
 
-  if (loading) return <div>Loading</div>;
+  if (loading)
+    return (
+      <p className="text-xl text-center font-semibold text-indigo-700">
+        Entries loading
+      </p>
+    );
 
   // @ts-ignore
   const user = session?.user_id?.data?.users[0].user_id;

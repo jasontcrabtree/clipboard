@@ -36,7 +36,6 @@ function AddNewEntry(): JSX.Element {
               has_headache
               has_sore_neck
               has_sore_stomach
-              has_digestive_issues
           }
         }
       }
@@ -59,7 +58,6 @@ function AddNewEntry(): JSX.Element {
             daily_entries_symptoms_join_table_symptoms: {
               data: {
                 has_tired: values.has_tired,
-                has_digestive_issues: values.has_digestive_issues,
                 has_sore_neck: values.has_sore_neck,
                 has_sore_stomach: values.has_sore_stomach,
                 has_headache: values.has_headache,
@@ -138,15 +136,6 @@ function AddNewEntry(): JSX.Element {
         <input
           defaultValue="false"
           {...register('has_sore_stomach')}
-          className="p-2 rounded border-gray-300 text-gray-700"
-          type="text"
-        />
-      </label>
-      <label htmlFor="" className="flex flex-col text-gray-200">
-        Digestive Issues?
-        <input
-          defaultValue="false"
-          {...register('has_digestive_issues')}
           className="p-2 rounded border-gray-300 text-gray-700"
           type="text"
         />

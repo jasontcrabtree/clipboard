@@ -22,7 +22,6 @@ function DailyEntryById({ entryId }: DailyEntryProps): JSX.Element {
             entrySymptoms: daily_entries_symptoms_join_table_symptoms {
               id
               created: created_at
-              digestive: has_digestive_issues
               headache: has_headache
               neck: has_sore_neck
               stomach: has_sore_stomach

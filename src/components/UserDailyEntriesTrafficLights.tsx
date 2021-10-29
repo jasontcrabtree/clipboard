@@ -28,7 +28,6 @@ function UserDailyEntriesTrafficLights({
           entrySymptoms: daily_entries_symptoms_join_table_symptoms {
             id
             created: created_at
-            digestion: has_digestive_issues
             headache: has_headache
             soreNeck: has_sore_neck
             soreStomach: has_sore_stomach

@@ -26,7 +26,6 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
           entrySymptoms: daily_entries_symptoms_join_table_symptoms {
             id
             created: created_at
-            digestion: has_digestive_issues
             headache: has_headache
             soreNeck: has_sore_neck
             soreStomach: has_sore_stomach
@@ -60,7 +59,9 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
             speakingIssues: has_speaking_issues
             tenderBreasts: has_tender_breasts
             tinnitus: has_tinnitus
-
+            nightSweats: has_night_sweats,
+            ibsReaction: has_ibs_reaction,
+            consumedPainkillers: has_consumed_painkillers,
             noSymptoms: has_no_symptoms
           }
         }
@@ -74,7 +75,12 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
     return <div>Failed to load due to error {error}</div>;
   }
 
-  if (!data) return <div>Loading</div>;
+  if (!data)
+    return (
+      <div>
+        <p className="text-xl text-center text-semibold">Loading</p>
+      </div>
+    );
 
   const entry = data.daily_entries;
 
@@ -337,6 +343,24 @@ function UserDailyEntries({ userId }: DailyEntryProps): JSX.Element {
                     <SymptomsResult
                       label="Tinnitus"
                       present={entrySymptoms.tinnitus}
+                    />
+                  )}
+                  {entrySymptoms.nightSweats && (
+                    <SymptomsResult
+                      label="Night Sweats"
+                      present={entrySymptoms.nightSweats}
+                    />
+                  )}
+                  {entrySymptoms.ibsReaction && (
+                    <SymptomsResult
+                      label="IBS Reaction"
+                      present={entrySymptoms.ibsReaction}
+                    />
+                  )}
+                  {entrySymptoms.consumedPainkillers && (
+                    <SymptomsResult
+                      label="Had Painkillers"
+                      present={entrySymptoms.consumedPainkillers}
                     />
                   )}
                 </div>

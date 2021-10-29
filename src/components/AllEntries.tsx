@@ -19,7 +19,6 @@ function AllEntries(): JSX.Element {
           daily_entries_symptoms_join_table_symptoms {
             id
             created_at
-            has_digestive_issues
             has_headache
             has_sore_neck
             has_sore_stomach

@@ -41,7 +41,6 @@ function NewEntryV2(): JSX.Element {
               has_headache
               has_sore_neck
               has_sore_stomach
-              has_digestive_issues
               has_awake_during_night
               has_bloating
               has_bad_breath
@@ -72,6 +71,9 @@ function NewEntryV2(): JSX.Element {
               has_speaking_issues
               has_tender_breasts
               has_tinnitus
+              has_night_sweats
+              has_ibs_reaction
+              has_consumed_painkillers
           }
         }
       }
@@ -94,7 +96,6 @@ function NewEntryV2(): JSX.Element {
             daily_entries_symptoms_join_table_symptoms: {
               data: {
                 has_tired: values.has_tired,
-                has_digestive_issues: values.has_digestive_issues,
                 has_sore_neck: values.has_sore_neck,
                 has_sore_stomach: values.has_sore_stomach,
                 has_headache: values.has_headache,
@@ -128,6 +129,9 @@ function NewEntryV2(): JSX.Element {
                 has_speaking_issues: values.has_speaking_issues,
                 has_tender_breasts: values.has_tender_breasts,
                 has_tinnitus: values.has_tinnitus,
+                has_night_sweats: values.has_night_sweats,
+                has_ibs_reaction: values.has_ibs_reaction,
+                has_consumed_painkillers: values.has_consumed_painkillers,
               },
             },
           },
@@ -145,7 +149,6 @@ function NewEntryV2(): JSX.Element {
     ['has_no_symptoms', 'No Symptoms'],
     ['has_headache', 'Headache'],
     ['has_tired', 'Tired'],
-    ['has_digestive_issues', 'Digestive Issues'],
     ['has_sore_neck', 'Sore Neck'],
     ['has_sore_stomach', 'Sore Stomach'],
     ['has_awake_during_night', 'Woke up During Night'],
@@ -165,7 +168,7 @@ function NewEntryV2(): JSX.Element {
     ['has_extreme_energy_crash', 'Extreme Energy Crash'],
     ['has_gassy', 'Gassy'],
     ['has_lightheaded', 'Lightheaded'],
-    ['has_memory_issues', 'Nemory Issues'],
+    ['has_memory_issues', 'Memory Issues'],
     ['has_nap', 'Nap'],
     ['has_ovary_pain', 'Ovary Pain'],
     ['has_pms', 'PMS'],
@@ -177,6 +180,9 @@ function NewEntryV2(): JSX.Element {
     ['has_speaking_issues', 'Speaking Issues'],
     ['has_tender_breasts', 'Tender Breasts'],
     ['has_tinnitus', 'Tinnitus'],
+    ['has_night_sweats', 'Night Sweats'],
+    ['has_ibs_reaction', 'IBS Reaction'],
+    ['has_consumed_painkillers', 'Took Painkillers'],
   ];
 
   if (!session) return null;
