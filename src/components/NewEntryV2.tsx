@@ -234,8 +234,8 @@ function NewEntryV2(): JSX.Element {
           type="text"
         />
       </label>
-      <fieldset className="p-2 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 flex flex-wrap flex-row rounded">
-        <legend className="flex flex-wrap">
+      <fieldset className="p-2 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-700 flex flex-wrap flex-row rounded gap-3">
+        <legend className="flex flex-wrap bg-yellow-100 border border-gray-400 px-4 px-4 rounded-lg">
           Select Symptoms present on the day of the entry.
         </legend>
         {symptomsList.map((symptom) => {
@@ -248,7 +248,10 @@ function NewEntryV2(): JSX.Element {
           // ref === 'has_no_symptoms' ? console.log('yes') : console.log('no');
 
           return (
-            <label key={symptom[0]} className="pr-4 whitespace-nowrap">
+            <label
+              key={symptom[0]}
+              className="bg-gray-100 border border-gray-300 p-2 rounded pr-4 whitespace-nowrap text-lg md:text-base"
+            >
               <input
                 type="checkbox"
                 disabled={noSymptomsActivated}
