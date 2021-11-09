@@ -228,7 +228,7 @@ function NewEntryV2(): JSX.Element {
           <span className="text-sm text-green-600 fw-semibold">(*Text)</span>
         </span>
         <input
-          defaultValue="A great day"
+          placeholder="A great day"
           {...register('day_summary')}
           className="p-2 rounded border-gray-300 font-normal"
           type="text"
