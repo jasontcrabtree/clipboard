@@ -183,6 +183,9 @@ function NewEntryV2(): JSX.Element {
     ['has_night_sweats', 'Night Sweats'],
     ['has_ibs_reaction', 'IBS Reaction'],
     ['has_consumed_painkillers', 'Took Painkillers'],
+    ['has_period', 'Period'],
+    ['has_sick', 'Sick/Ill'],
+    ['has_hayfever', 'Hayfever'],
   ];
 
   if (!session) return null;
